@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>DHBW Digitaler Vorlesungsplan</title>
+</head>
+<body>
+    <h1>DHBW Stuttgart Wirtschaftsinformatik - Digitaler Vorlesungsplan</h1>
+    <p>
+        Auf dieser Seite befinden sich digitale .ical Kalenderdateien aller Vorlesungspläne der Wirtschaftsinformatik an 
+        der DHBW Stuttgart zum Download. Die Kalenderdateien werden auf Grundlage der online verfügbaren PDFs generiert, 
+        dementsprechend kann für Fehlerfreiheit der Kalender nicht garantiert werden.
+    </p>
+    <form id="selectform" class="selection">
+        Wähle deinen Jahrgang aus:
+        <select name="year" id="year">
+            <option value="2021">WWI2021</option>
+            <option value="2020">WWI2020</option>
+            <option value="2019">WWI2019</option>
+            <option value="2018">WWI2018</option>
+        </select>
+        Wähle deinen Kurs aus:
+        <select name="course" id="course">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="V">V</option>
+        </select>
+        <input type="submit" placeholder="Suchen" />
+    </form>
+    <ul id="links">
+    </ul>
+    <script>
+        function getClass(e) {
+            e.preventDefault();
+            let list = document.querySelector("#links");
+            list.innerHTML = "";
+            let year = document.querySelector("#year");
+            let course = document.querySelector("#course");
+
+            let link = document.createElement("a");
+            link.href = "timetable/WWI" + year.value + course.value + ".ics";
+            link.text = "Kalender für WWI" + year.value + course.value;
+
+            let copy = document.createElement("button");
+            copy.innerText = "Link kopieren";
+            copy.onclick = function() {
+                let fullLink = "localhost:8080/timetable/WWI" + document.querySelector("#year").value + document.querySelector("#course").value + ".ics";
+                navigator.clipboard.writeText(fullLink);
+            };
+            list.appendChild(link);
+            list.appendChild(copy);
+        }
+
+        document.getElementById("selectform").addEventListener("submit", getClass, true);
+    </script>
+</body>
+</html>
