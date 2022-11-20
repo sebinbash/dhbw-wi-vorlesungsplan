@@ -1,5 +1,7 @@
 # DHBW WI Vorlesungsplan pdf2ical
 
+Python skript, das Vorlesungspläne der WI Kurse in iCalendar Dateien konvertiert.
+
 ## Requirements & Setup
 
 - [ghostscript](https://www.ghostscript.com/)
